@@ -20,7 +20,7 @@ C++ organizes language types into two main categories:
   - Lambdas
 
 ## Conversion Rules
-- * : any operation.
+`*` : any operation.
     
   - **Floating Point Promotion**: floating type * integer type = floating type.
   - **Implicit Integer Promotion**: small_integral_type * small_integral_type = int.
@@ -69,18 +69,18 @@ Color col = Color::Red;
 
 ## Enumerators vs Class Enumerators
 
-Classic C-enum pitfalls:
+- Classic C-enum pitfalls:
 
-- Enums are named integer constants, so comparison with integers and other enums is allowed and doesn't cause compilation problems, but it can be overlooked in development and cause issues.
-- Different enum values can't have the same name. For example, you can't have an enum value of ERROR in both the `Networking_Result` enum and the `Parsing_Result` enum. Additionally, a variable called ERROR will cause a compilation error even if it has nothing to do with the enum.
+  - Enums are named integer constants, so comparison with integers and other enums is allowed and doesn't cause compilation problems, but it can be overlooked in development and cause issues.
+  - Different enum values can't have the same name. For example, you can't have an enum value of ERROR in both the `Networking_Result` enum and the `Parsing_Result` enum. Additionally, a variable called ERROR will cause a compilation error even if it has nothing to do with the enum.
 
-**C++11** introduced class enumerators to solve these pitfalls. This enhancement was part of the broader effort in C++11 to improve type safety and modernize the language.
+- **C++11** introduced class enumerators to solve these pitfalls. This enhancement was part of the broader effort in C++11 to improve type safety and modernize the language.
 
 ## Unions
 
-A `union` is a structure where data members share the same memory space, meaning at any given time, a union can contain no more than one object from its list of members. It always uses only enough memory to store the largest member.
+- A `union` is a structure where data members share the same memory space, meaning at any given time, a union can contain no more than one object from its list of members. It always uses only enough memory to store the largest member.
 
-A `union` can be used for:
+- A `union` can be used for:
 
 - Saving memory space by allowing two data members that are never used at the same time to share the same piece of memory. Example:
 
@@ -100,7 +100,7 @@ void F3(bool y) {
 }
 ```
 
-This can be rewritten as:
+- This can be rewritten as:
 
 ```cpp
 void F1(int x[]); // F1 changes the content of x.
@@ -120,7 +120,7 @@ void F3(bool y) {
 }
 ```
 
-Using this method is perfect for large data that is not used simultaneously. It saves memory and reduces cache misses because the same memory will be used more often.
+- Using this method is perfect for large data that is not used simultaneously. It saves memory and reduces cache misses because the same memory will be used more often.
 
 - Accessing the same data in different ways. Example:
 
@@ -134,7 +134,7 @@ x.i |= 0x80000000;  // set sign bit of f
 cout << x.f;        // will give -2.0 
 ```
 
-In this example, the sign bit of `f` is set using the bitwise OR operator, which can only be applied to integers.
+- In this example, the sign bit of `f` is set using the bitwise OR operator, which can only be applied to integers.
 
 **Note:** Unions can be a source of bugs. Ensure proper maintenance and access the same member you assigned. If any member types have a nontrivial constructor, you must write code to explicitly construct and destroy that member.
 
