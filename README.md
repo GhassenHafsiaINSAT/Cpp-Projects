@@ -32,14 +32,25 @@
 
 ## C++ Operators
 ### Operators Precedence 
-- **Unary** operators >> **binary** operators >> **Bitwise** operators >> **logic** operators >> **comparison** operators >> **compound assignment** operators >> **comma** operator.  
+
+- **Unary** operators >>
+      **binary** operators >>
+          **Bitwise** operators >>
+              **logic** operators >>
+                  **comparison** operators >>
+                      **compound assignment** operators >>
+                          **comma** operator.
+  
 ### Prefix and postfix Increment Semantic
+
   - **Prefix Increment/Decrement** `++i`, `--i`
       - Update the value then return the new (updated) value.  
+
   - **Postfix Increment/Decrement** `i++`, `i--`
       - Save the old value (temporary), update the value then return the old value.
    
 ## Declaration / Definition 
+
 - A declaration or a prototype introduces an entity with an idenitifer describing its type and propreties.
 - An entity definition is the implementation of a declaration. It defines the behaviour of the entity.
 
@@ -99,7 +110,8 @@ int* array3 = (int*)calloc(4, sizeof(int));
 
 int* array4 = new int[4](); // Note the parentheses in C++
 ```
-
+- Each object allocated with malloc() must be deallocated with free().
+- Each object allocated with new must be deallocated with delete.  
 ### BSS and Data segment
 - **Characteristics**:
 
@@ -115,3 +127,13 @@ int big_data[10000000] = {}; // BSS segment memory
 - **Characteristics**:
     - Contains the actual executable code.
     - Typically read-only in modern systems.
+
+## Memory Leak 
+- A memory Leak is a dynamically allocated entity in the heap that is no longer used by the program, but still maintained overall its execution
+
+```cpp
+int main() {
+int* newPtr = new int;
+newPtr = nullptr;        // memory leak
+```
+ 
