@@ -20,12 +20,13 @@ C++ organizes language types into two main categories:
   - Lambdas
 
 ## Conversion Rules
-
-- **Floating Point Promotion**: floating type * integer type = floating type.
-- **Implicit Integer Promotion**: small_integral_type * small_integral_type = int.
-- **Size Promotion**: small_type * large_type = large_type.
-- **Sign Promotion**: signed_type * unsigned_type = unsigned_type.
-- **Implicit Promotion**: +a / a+0 = ASCII code.
+- * : any operation.
+    
+  - **Floating Point Promotion**: floating type * integer type = floating type.
+  - **Implicit Integer Promotion**: small_integral_type * small_integral_type = int.
+  - **Size Promotion**: small_type * large_type = large_type.
+  - **Sign Promotion**: signed_type * unsigned_type = unsigned_type.
+  - **Implicit Promotion**: +a / a+0 = ASCII code.
 
 ## `auto` Keyword
 
@@ -49,9 +50,10 @@ A class enumerator `enum class` is a data type added in the **C++11 Standard**. 
 - **Type Safe:** They do not allow implicit conversions to int, similar to how `nullptr` does not allow conversion to 0, and do not allow comparisons with other enumerations, thus solving many type-related problems and potential bugs in code.
 - **Strongly Scoped:** They do not cause variable naming problems.
 
-Here is an example of an enum class:
 
 ```cpp
+//Here is an example of an enum class
+
 // Declaration
 enum class EnumName { Value1, Value2, ValueN };
 
@@ -136,13 +138,23 @@ In this example, the sign bit of `f` is set using the bitwise OR operator, which
 
 **Note:** Unions can be a source of bugs. Ensure proper maintenance and access the same member you assigned. If any member types have a nontrivial constructor, you must write code to explicitly construct and destroy that member.
 
+## `struct` vs `union`
+
+- A `struct` groups different variables into a single unit, each variable having its location in memory.
+- A `union` groups different variables in the same memory location.
+
+In a nutshell:
+
+- The size of a `struct` is the sum of the size of all its members plus padding (for efficiency and performance).
+- The size of a `union` is the size of its largest member.
+
 ## `std::variant`
 
-At its core, `std::variant` is a union of types. It can store one value at a time from a predefined set of types. Unlike a traditional `union`, `std::variant` keeps track of its active type, ensuring correct value access.
+- At its core, `std::variant` is a union of types. It can store one value at a time from a predefined set of types. Unlike a traditional `union`, `std::variant` keeps track of its active type, ensuring correct value access.
 
 ### Examples for `std::variant`
 
-`std::variant` allows you to store one value from a set of predefined types and keeps track of the active type:
+- `std::variant` allows you to store one value from a set of predefined types and keeps track of the active type:
 
 ```cpp
 #include <iostream>
@@ -163,36 +175,25 @@ int main() {
     return 0;
 }
 ```
-
-## `struct` vs `union`
-
-- A `struct` groups different variables into a single unit, each variable having its location in memory.
-- A `union` groups different variables in the same memory location.
-
-In a nutshell:
-
-- The size of a `struct` is the sum of the size of all its members plus padding (for efficiency and performance).
-- The size of a `union` is the size of its largest member.
-
 ## Lambda Functions
 
-Lambda functions were introduced in C++11. Inspired by functional programming languages like Lisp, Haskell, and OCaml, they provide a practical way of defining closures (anonymous function objects that can be passed as arguments to functions or defined and invoked directly).
+- Lambda functions were introduced in C++11. Inspired by functional programming languages like Lisp, Haskell, and OCaml, they provide a practical way of defining closures (anonymous function objects that can be passed as arguments to functions or defined and invoked directly).
 
-Lambdas are syntactic sugar over function pointers and allow for higher-order functions, such as `map`, `filter`, and `reduce` in JavaScript, enabling cleaner code.
+- Lambdas are syntactic sugar over function pointers and allow for higher-order functions, such as `map`, `filter`, and `reduce` in JavaScript, enabling cleaner code.
 
-Typically, lambdas are used to encapsulate a few lines of code that are passed to algorithms or asynchronous functions. They can access variables from the enclosing scope in three ways:
+- Typically, lambdas are used to encapsulate a few lines of code that are passed to algorithms or asynchronous functions. They can access variables from the enclosing scope in three ways:
 
-- Capture by reference.
-- Capture by value.
-- Capture by both (mixed capture).
+  - Capture by reference.
+  - Capture by value.
+  - Capture by both (mixed capture).
 
-Syntax for capturing variables:
+- Syntax for capturing variables:
+  
+  - `[&]`: capture all external variables by reference.
+  - `[=]`: capture all external variables by value.
+  - `[a, &b]`: capture `a` by value and `b` by reference.
 
-- `[&]`: capture all external variables by reference.
-- `[=]`: capture all external variables by value.
-- `[a, &b]`: capture `a` by value and `b` by reference.
-
-A lambda with an empty capture clause `[ ]` can only access variables that are local to it.
+- A lambda with an empty capture clause `[ ]` can only access variables that are local to it.
 
 ### Examples of Lambda Functions
 
@@ -291,4 +292,15 @@ int big_data[10000000] = {}; // BSS segment memory
 ### Code Segment (.text)
 
 - **Characteristics**:
+  - Contains the actual executable code.
+  - Typically read-only in modern systems.
 
+## Memory Leak 
+- A memory leak is a dynamically allocated entity in the heap memory that is no longer used by the program, but still maintained overall its execution
+
+```cpp
+int main() {
+int* array = new int[10];
+array = nullptr; // memory leak!!
+}
+```
