@@ -2,169 +2,243 @@
 
 ## C++ Type System
 
-- C++ organizes the language types into two main categories:
-  - **Fundamental types**: Types provided by the language itself.
-    - Arithmetic types: integer and floating point.
-    - `void`
-    - `nullptr`
-  - **Compound types**: Composition or reference to other types.
-    - Pointers
-    - References
-    - Enumerators
-    - Class Enumerators *( added in C++ 2011 Standard)*
-    - Arrays
-    - `struct`, `class`, `union` *(or since C++ 17 we can use the type-safe alternative: `std::variant`)*
-    - Functions
-    - Lambdas
+C++ organizes language types into two main categories:
+
+- **Fundamental types**: Types provided by the language itself.
+  - Arithmetic types: integer and floating point.
+  - `void`
+  - `nullptr`
+
+- **Compound types**: Compositions or references to other types.
+  - Pointers
+  - References
+  - Enumerators
+  - Class Enumerators *(added in C++11 Standard)*
+  - Arrays
+  - `struct`, `class`, `union` *(or, since C++17, the type-safe alternative: `std::variant`)*
+  - Functions
+  - Lambdas
 
 ## Conversion Rules
 
-- *: any operation.  
-    A. **Floating Point promotion**: floating type* integer type = floating type.
-    B. **Implicit integer promotion** : small_integral_type *small_integral_type  = int.
-    C. **Size promotion** : small_type* large_type = large_type.
-    D. **Sign promotion** : signed_type * unsigned_type = unsigned_type.  
-    E. **Implicit promotion** : +a / a+0 = ASCII code.  
+- **Floating Point Promotion**: floating type * integer type = floating type.
+- **Implicit Integer Promotion**: small_integral_type * small_integral_type = int.
+- **Size Promotion**: small_type * large_type = large_type.
+- **Sign Promotion**: signed_type * unsigned_type = unsigned_type.
+- **Implicit Promotion**: +a / a+0 = ASCII code.
 
-## Auto Keyword
+## `auto` Keyword
 
-- It specifies that the compiler will automatically deduce the type of the variable
-- `auto` can be useful for maintainability and hiding complex type definitions.  
+- Specifies that the compiler will automatically deduce the type of the variable.
+- `auto` can be useful for maintainability and hiding complex type definitions.
 - `auto` and `decltype` can be used to deduce the return type based on an expression.
+
+- The `auto` keyword was reintroduced in C++11 to simplify type declarations. In earlier versions of C++, `auto` was used to indicate automatic storage duration, which was the default and rarely explicitly stated. The modern usage allows for type inference, making code more concise and maintainable.
 
 ## C++ Operators
 
 ### Operators Precedence
 
-- **Unary** operators >> **binary** operators >> **Bitwise** operators >> **logic** operators >> **comparison** operators >> **compound assignment** operators >> **comma** operator.  
+Unary operators >> binary operators >> bitwise operators >> logical operators >> comparison operators >> compound assignment operators >> comma operator.
 
-### Prefix and postfix Increment Semantic
+### Prefix and Postfix Increment Semantics
 
 - **Prefix Increment/Decrement** `++i`, `--i`
-  - Update the value then return the new (updated) value.  
+  - Update the value then return the new (updated) value.
 - **Postfix Increment/Decrement** `i++`, `i--`
   - Save the old value (temporary), update the value then return the old value.
 
 ## Declaration / Definition
 
-- A declaration or a prototype introduces an entity with an identifier describing its type and properties.
-- An entity definition is the implementation of a declaration. It defines the behaviour of the entity.
+- A declaration or prototype introduces an entity with an identifier describing its type and properties.
+- A definition is the implementation of a declaration. It defines the behaviour of the entity.
 
 ## Enumerators
 
-- An enumerator `enum` is a data type that groups a set of named integral constants
+An enumerator `enum` is a data type that groups a set of named integral constants:
 
 ```cpp
-enum color_t {BLACK, BULE, GREEN };
+enum color_t {BLACK, BLUE, GREEN};
 color_t color = BLUE;
 ```
 
 ## Class Enumerators
 
-- A class enumerator `enum class` is a data type added in the **C++ 11 Standard**. They are also known as **`scoped enumerations`**.
+A class enumerator `enum class` is a data type added in the **C++11 Standard**. They are also known as **scoped enumerations**. They are type-safe and strongly scoped:
 
-They are ***type safe***, ***strongly scoped*** variation of enumerations:
-
-- **Type Safe:** as they do not allow implicit conversions to int similar to how `nullptr` does not allow conversion to 0 and does not allow comparisons with other enumerations. Thus, solving many type-related problems and potential bugs in code.
-- **Strongly Scoped:** as they do not cause variable naming problems. *(This will be further discussed in the next section)*.
+- **Type Safe:** They do not allow implicit conversions to int, similar to how `nullptr` does not allow conversion to 0, and do not allow comparisons with other enumerations, thus solving many type-related problems and potential bugs in code.
+- **Strongly Scoped:** They do not cause variable naming problems.
 
 Here is an example of an enum class:
 
 ```cpp
 // Declaration
-enum class EnumName{ Value1, Value2, ValueN};
+enum class EnumName { Value1, Value2, ValueN };
 
-// Initialisation
-EnumName ObjectName = EnumName::Value1;
+// Initialization
+EnumName objectName = EnumName::Value1;
 
 // Declaration
-enum class Color{ Red, Green, Blue};
+enum class Color { Red, Green, Blue };
 
-// Initialisation
+// Initialization
 Color col = Color::Red;
 ```
 
-## Enumerators VS Class Enumerators
+## Enumerators vs Class Enumerators
 
-Here are some of the classic C-enum pitfalls:
+Classic C-enum pitfalls:
 
-- Enums are Named Integer Constants so comparison with integers, and other enums is allowed and doesn't cause a compilation problem but it can be overlooked in development and cause problems.
-- Different Enums Values can't have the same name, you can't have for example an enum value of ERROR in Networking_Result enum and Parsing_Result enum. **This problem can be caused by variables too:** A variable called ERROR will cause a compilation error even if it has nothing to do with the enum.
+- Enums are named integer constants, so comparison with integers and other enums is allowed and doesn't cause compilation problems, but it can be overlooked in development and cause issues.
+- Different enum values can't have the same name. For example, you can't have an enum value of ERROR in both the `Networking_Result` enum and the `Parsing_Result` enum. Additionally, a variable called ERROR will cause a compilation error even if it has nothing to do with the enum.
 
-**C++ 11** introduced Class enumerators to solve these pitfalls.
+**C++11** introduced class enumerators to solve these pitfalls. This enhancement was part of the broader effort in C++11 to improve type safety and modernize the language.
 
 ## Unions
 
-- A `union` is a structure where data members share the same memory space: This definition means that at any given time, a union can contain no more than one object from its list of members. It also means that no matter how many members a union has, it always uses only enough memory to store the largest member.
-- A `union` can be used for:
-  - saving memory space by allowing two data members that are never used at the same time to share the same piece of memory. Example:
+A `union` is a structure where data members share the same memory space, meaning at any given time, a union can contain no more than one object from its list of members. It always uses only enough memory to store the largest member.
 
-    This code here:
-  
-  ```cpp
-  void F1(int   x[]); // F1 changes the content of x.
-  void F2(float x[]); // F2 changes the content of x.
-  void F3(bool y) {
-    int a[1000];
-    float b[1000];
-    if (y) {  
-      F1(a);
-    }
-    else {
-      F2(b);
-    }
-    // do something else
+A `union` can be used for:
+
+- Saving memory space by allowing two data members that are never used at the same time to share the same piece of memory. Example:
+
+```cpp
+void F1(int x[]); // F1 changes the content of x.
+void F2(float x[]); // F2 changes the content of x.
+void F3(bool y) {
+  int a[1000];
+  float b[1000];
+  if (y) {  
+    F1(a);
   }
-  ```
-
-  can be written as this:
-  
-  ```cpp
-  void F1(int   x[]); // F1 changes the content of x.
-  void F2(float x[]); // F2 changes the content of x.
-  void F3(bool y) {
-    union { 
-      int   a[1000]; 
-      float b[1000]; 
-    }; 
-    if (y) { 
-      F1(a); 
-    } 
-    else { 
-      F2(b); 
-    }
-    // do something else
+  else {
+    F2(b);
   }
-  ```
+  // do something else
+}
+```
 
-  Using this method is perfect for big Data that is not used at the same time. It saves data as well as reduces the amount of cache misses because the same memory will be used more. This affects memory especially if the data is big enough. Putting simple variables into a union is not optimal because it prevents the use of register variables.
-  
-- accessing the same data in different ways. Example:
+This can be rewritten as:
 
-    ```cpp
-    union { 
-      float f; 
-      int i; 
-    } x; 
-    x.f = 2.0f; 
-    x.i |= 0x80000000;  // set sign bit of f 
-    cout << x.f;        // will give -2.0 
-    ```
+```cpp
+void F1(int x[]); // F1 changes the content of x.
+void F2(float x[]); // F2 changes the content of x.
+void F3(bool y) {
+  union { 
+    int a[1000]; 
+    float b[1000]; 
+  }; 
+  if (y) { 
+    F1(a); 
+  } 
+  else { 
+    F2(b); 
+  }
+  // do something else
+}
+```
 
-  In this example, the sign bit of f is set by using the bitwise OR operator, which can only be applied to integers.
+Using this method is perfect for large data that is not used simultaneously. It saves memory and reduces cache misses because the same memory will be used more often.
 
-- ***BE AWARE:*** Unions can be a source of bugs. Be sure to maintain it well. You're responsible for ensuring that you always access the same member you assigned. If any member types have a nontrivial constructor, then you must write code to explicitly construct and destroy that member.
+- Accessing the same data in different ways. Example:
 
-## Std::Variant
+```cpp
+union { 
+  float f; 
+  int i; 
+} x; 
+x.f = 2.0f; 
+x.i |= 0x80000000;  // set sign bit of f 
+cout << x.f;        // will give -2.0 
+```
 
-At its core, `std::variant` is a `union` of types. It can store one value at a time from a predefined set of types. Unlike a traditional `union`, `std::variant` keeps track of its active type, ensuring that you access the correct value.
+In this example, the sign bit of `f` is set using the bitwise OR operator, which can only be applied to integers.
 
-## Struct vs Union
+**Note:** Unions can be a source of bugs. Ensure proper maintenance and access the same member you assigned. If any member types have a nontrivial constructor, you must write code to explicitly construct and destroy that member.
 
-- A struct groups different variables into a single unit, each variable has its location in memory.
-- A union groups different variables in the same memory location.
+## `std::variant`
 
-In a nutshell, struct members each have an offset while union members all have an offset of 0 in memory:
+At its core, `std::variant` is a union of types. It can store one value at a time from a predefined set of types. Unlike a traditional `union`, `std::variant` keeps track of its active type, ensuring correct value access.
 
-- The Size of a struct is the sum of the size of all its members + padding. (structure padding is used for efficiency and performance purposes).
-- The Size of a union is the size of its biggest member.
+### Examples for `std::variant`
+
+`std::variant` allows you to store one value from a set of predefined types and keeps track of the active type:
+
+```cpp
+#include <iostream>
+#include <variant>
+#include <string>
+
+int main() {
+    std::variant<int, float, std::string> v;
+    v = 42;
+    std::cout << std::get<int>(v) << std::endl;  // Outputs: 42
+
+    v = 3.14f;
+    std::cout << std::get<float>(v) << std::endl;  // Outputs: 3.14
+
+    v = "hello";
+    std::cout << std::get<std::string>(v) << std::endl;  // Outputs: hello
+
+    return 0;
+}
+```
+
+## `struct` vs `union`
+
+- A `struct` groups different variables into a single unit, each variable having its location in memory.
+- A `union` groups different variables in the same memory location.
+
+In a nutshell:
+
+- The size of a `struct` is the sum of the size of all its members plus padding (for efficiency and performance).
+- The size of a `union` is the size of its largest member.
+
+## Lambda Functions
+
+Lambda functions were introduced in C++11. Inspired by functional programming languages like Lisp, Haskell, and OCaml, they provide a practical way of defining closures (anonymous function objects that can be passed as arguments to functions or defined and invoked directly).
+
+Lambdas are syntactic sugar over function pointers and allow for higher-order functions, such as `map`, `filter`, and `reduce` in JavaScript, enabling cleaner code.
+
+Typically, lambdas are used to encapsulate a few lines of code that are passed to algorithms or asynchronous functions. They can access variables from the enclosing scope in three ways:
+
+- Capture by reference.
+- Capture by value.
+- Capture by both (mixed capture).
+
+Syntax for capturing variables:
+
+- `[&]`: capture all external variables by reference.
+- `[=]`: capture all external variables by value.
+- `[a, &b]`: capture `a` by value and `b` by reference.
+
+A lambda with an empty capture clause `[ ]` can only access variables that are local to it.
+
+### Examples of Lambda Functions
+
+Lambdas can be used in various ways, such as encapsulating code passed to algorithms:
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+int main() {
+    std::vector<int> numbers = {1, 2, 3, 4, 5};
+
+    // Capture by value
+    std::for_each(numbers.begin(), numbers.end(), [=](int n) {
+        std::cout << n * n << " ";
+    });
+    std::cout << std::endl;  // Outputs: 1 4 9 16 25
+
+    // Capture by reference
+    int total = 0;
+    std::for_each(numbers.begin(), numbers.end(), [&](int n) {
+        total += n;
+    });
+    std::cout << "Total: " << total << std::endl;  // Outputs: Total: 15
+
+    return 0;
+}
+```
