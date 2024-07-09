@@ -1,11 +1,14 @@
 # Modern C++ Programming
 
 ## C++ Type System
+
 - C++ organizes the language types in two main categories:
+  
     - **Fundamental types** : Types provided by the language itself.
         - Arithmetic types : integer and floating point.
         - `void`
         - `nullptr`
+          
     - **Compound types** : Composition or reference to other types.
         - Pointers
         - References
@@ -14,12 +17,14 @@
         - `struct`, `class`, `union`
         - Functions
 ## Conversion Rules
+
   - *: any operation.  
-    A. **Floating Point promotion** : floating type * integer type = floating type.
-    B. **Implicit integer promotion** : small_integral_type * small_integral_type  = int.
-    C. **Size promotion** : small_type * large_type = large_type.
-    D. **Sign promotion** : signed_type * unsigned_type = unsigned_type.  
-    E. **Implicit promotion** : +a / a+0 = ASCII code.  
+
+    A. **Floating Point promotion** : floating type * integer type = floating type.  
+    B. **Implicit integer promotion** : small_integral_type * small_integral_type  = int.  
+    C. **Size promotion** : small_type * large_type = large_type.  
+    D. **Sign promotion** : signed_type * unsigned_type = unsigned_type.    
+    E. **Implicit promotion** : +a / a+0 = ASCII code.    
 ## Auto Keyword
 - It specifies that the type of the variable will be automatically deduced by the compiler
 - `auto` can be very useful for maintainability and for hiding complex type definition.  
