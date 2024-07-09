@@ -61,7 +61,6 @@ An enumerator `enum` is a data type that groups a set of named integral constant
 enum color_t {BLACK, BLUE, GREEN};
 color_t color = BLUE;
 ```
-
 ## Class Enumerators
 
 A class enumerator `enum class` is a data type added in the **C++11 Standard**. They are also known as **scoped enumerations**. They are type-safe and strongly scoped:
@@ -242,3 +241,68 @@ int main() {
     return 0;
 }
 ```
+
+## Memory Segments in C/C++
+
+![image](https://github.com/GhassenHafsiaINSAT/C-Projects/assets/110825502/3cfcfbdc-c29e-4885-aacf-90334a5b7a36)
+
+### Stack Memory
+
+- **Characteristics**:
+  - Small memory, Last-In-First-Out (LIFO) structure.
+  - Allocation at compile-time.
+  - Each thread has its own stack.
+  - Local variables and function arguments reside here.
+  - Objects inside the stack are valid only within their scope.
+
+```cpp
+int main() {
+    int A[] = {1, 2, 3}; // Example of stack memory usage
+}
+```
+### Heap (Dynamic Memory) 
+
+- **Characteristics**:
+    - Larger memory area compared to stack.
+    - Allocation at run-time using new (C++) or malloc (C).
+    - Relies on virtual memory.
+    - Memory is shared among threads.
+```cpp
+// Dynamic memory allocation examples
+
+// C style allocation and deallocation
+int* value = (int*)malloc(sizeof(int));
+free(value);
+
+// C++ style allocation and deallocation
+int* value = new int;
+delete value;
+
+// Array allocation and deallocation
+int* array1 = (int*)malloc(4 * sizeof(int));
+free(array1);
+
+int* array2 = new int[4];
+delete[] array2;
+
+// Initialization with zero
+int* array3 = (int*)calloc(4, sizeof(int));
+
+int* array4 = new int[4](); // Note the parentheses in C++
+```
+
+### BSS and Data segment
+- **Characteristics**:
+
+    - .bss and .data segments hold global and static global data.
+    - Larger than stack memory but slower access.
+```cpp
+// Examples of data segment usage
+int data[] = {1, 2}; // Data segment memory
+int big_data[10000000] = {}; // BSS segment memory
+```
+
+### Code Segment (.text)
+- **Characteristics**:
+    - Contains the actual executable code.
+    - Typically read-only in modern systems.
