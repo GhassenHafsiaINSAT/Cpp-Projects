@@ -61,6 +61,7 @@ An enumerator `enum` is a data type that groups a set of named integral constant
 enum color_t {BLACK, BLUE, GREEN};
 color_t color = BLUE;
 ```
+
 ## Class Enumerators
 
 A class enumerator `enum class` is a data type added in the **C++11 Standard**. They are also known as **scoped enumerations**. They are type-safe and strongly scoped:
@@ -260,13 +261,15 @@ int main() {
     int A[] = {1, 2, 3}; // Example of stack memory usage
 }
 ```
-### Heap (Dynamic Memory) 
+
+### Heap (Dynamic Memory)
 
 - **Characteristics**:
-    - Larger memory area compared to stack.
-    - Allocation at run-time using new (C++) or malloc (C).
-    - Relies on virtual memory.
-    - Memory is shared among threads.
+  - Larger memory area compared to stack.
+  - Allocation at run-time using new (C++) or malloc (C).
+  - Relies on virtual memory.
+  - Memory is shared among threads.
+
 ```cpp
 // Dynamic memory allocation examples
 
@@ -292,10 +295,12 @@ int* array4 = new int[4](); // Note the parentheses in C++
 ```
 
 ### BSS and Data segment
+
 - **Characteristics**:
 
-    - .bss and .data segments hold global and static global data.
-    - Larger than stack memory but slower access.
+  - .bss and .data segments hold global and static global data.
+  - Larger than stack memory but slower access.
+
 ```cpp
 // Examples of data segment usage
 int data[] = {1, 2}; // Data segment memory
@@ -303,6 +308,7 @@ int big_data[10000000] = {}; // BSS segment memory
 ```
 
 ### Code Segment (.text)
+
 - **Characteristics**:
-    - Contains the actual executable code.
-    - Typically read-only in modern systems.
+  - Contains the actual executable code.
+  - Typically read-only in modern systems.
