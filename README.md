@@ -37,26 +37,6 @@ C++ organizes language types into two main categories:
 
 ## C++ Operators
 
-### Operators Precedence
-
-Unary operators >> binary operators >> bitwise operators >> logical operators >> comparison operators >> compound assignment operators >> comma operator.
-
-### Prefix and Postfix Increment Semantics
-
-- **Prefix Increment/Decrement** `++i`, `--i`
-  - Update the value then return the new (updated) value.
-- **Postfix Increment/Decrement** `i++`, `i--`
-  - Save the old value (temporary), update the value then return the old value.
-
-## Declaration / Definition
-
-- A declaration or prototype introduces an entity with an identifier describing its type and properties.
-- A definition is the implementation of a declaration. It defines the behaviour of the entity.
-
-## Enumerators
-
-An enumerator `enum` is a data type that groups a set of named integral constants:
-
 ```cpp
 enum color_t {BLACK, BLUE, GREEN};
 color_t color = BLUE;
@@ -293,7 +273,8 @@ int* array3 = (int*)calloc(4, sizeof(int));
 
 int* array4 = new int[4](); // Note the parentheses in C++
 ```
-
+- Each object allocated with malloc() must be deallocated with free().
+- Each object allocated with new must be deallocated with delete.  
 ### BSS and Data segment
 
 - **Characteristics**:
@@ -310,5 +291,4 @@ int big_data[10000000] = {}; // BSS segment memory
 ### Code Segment (.text)
 
 - **Characteristics**:
-  - Contains the actual executable code.
-  - Typically read-only in modern systems.
+
