@@ -304,3 +304,57 @@ int* array = new int[10];
 array = nullptr; // memory leak!!
 }
 ```
+## Pointers and references 
+
+### Pointer 
+
+- **Pointer** T* is a value referring to a location in memory
+
+- **Pointer Dereferencing** (*ptr) is obtaining the value stored in at the location referred to the pointer.  
+
+```cpp
+int* ptr1 = new int;
+*ptr1 = 4; // dereferencing (assignment)
+int a = *ptr1; // dereferencing (get value)
+```
+
+- **Subscript Operator** [] allows accessing the pointer element at a given position.  
+
+```cpp 
+int* ptr2 = new int[10];
+ptr2[2] = 3;
+```
+
+- **Pointer arithmetic rule** : address(ptr + i) = address(ptr) + (sizeof(T) * i)
+
+- The **address-of operator** & returns the address of a variable.  
+
+```cpp 
+int a = 3;
+int* b = &a;
+```
+- The arrow operator (->) is used with a pointer to an object
+
+```cpp 
+A* ptr = &a;
+ptr->x;
+```
+
+### References
+- Avariable reference T& is an alias, namely another name for an existing variable. 
+
+- A pointer has its own memory address, reference shares the same memory address with the original variable.
+
+- Not like pointers, references cannot have NULL value, cannot be changed and must be initalized when they are created.  
+
+```cpp 
+int c = 2;
+int& d = c; 
+```
+
+- The dot (.) operator is applied to local objects and references
+
+```cpp 
+A& ref = a; 
+ref.x; 
+```
