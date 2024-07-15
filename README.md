@@ -223,6 +223,83 @@ int main() {
     return 0;
 }
 ```
+
+## C++ Preprocessor and Preprocessor Directives 
+
+- Pre-processing in C++ does many tasks such as including files, conditional compilation, using macros ... 
+
+- Pre-Processor directives are special commands used to instruct the preprocessor, It tells him to modfiy source code before compilation
+
+### Frequently used preprocessor directives
+
+1. **#include** : 
+The `#include` preprocessor directive is used to include the contents of one file into the current one.  
+
+```cpp
+#include <header_file_name>	// includes the header file from the source directory
+
+#include "header_file_name"	// includes the file from directory the source file is currently in
+
+```
+
+2. **#define** :
+
+The `#define` preprocessing directive is used to define macros.  
+
+```cpp
+#define macro_name value
+```
+
+3. **#undef** : 
+Used to redefine an existing macro.  
+
+```cpp
+```cpp
+#define macro_name value
+
+#undef MAX_VALUE 
+#define MAX_VALUE 200 
+```
+4. **#ifdef and #ifndef
+Used for conditional compilation, `#ifndef` verifies that a macro is not defined and `#ifdef` verifies that a macro is defined.     
+
+```cpp 
+#ifdef macro_name
+    // Code to be executed if macro_name is defined
+#ifndef macro_name
+   // Code to be executed if macro_name is not defined
+#endif
+```
+
+5. **#error**
+Used to print a  custom error message for compilation error.  
+
+```cpp 
+#error error_message
+```
+
+6. **#warning** 
+Used to print a custom warning message during the compilation.  
+
+```cpp 
+#warning warning_message
+```
+
+7. **#pragma**
+
+It is a compiler-specific instructions
+ 
+```cpp 
+
+#pragma once 		// used to include guard for header files.
+#pragma message 	// used to print custom messages at the time of compilation.
+#pragma warning 	// used to control warning behavior (like enable or disable warnings).
+#pragma optimize 	// used to control optimization settings (manage optimization level).
+#pragma comment 	// used to include some additional information in the object file(or specify linker options).
+
+
+
+
 ## Macros
 - Macros are Preprocessor directives used for code generation and substitution
 - Macros play a crucial role in simplifying code
