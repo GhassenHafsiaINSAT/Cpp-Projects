@@ -297,7 +297,7 @@ It is a compiler-specific instructions
 #pragma optimize 	// used to control optimization settings (manage optimization level).
 #pragma comment 	// used to include some additional information in the object file(or specify linker options).
 
-
+```
 
 
 ## Macros
@@ -313,7 +313,7 @@ It is a compiler-specific instructions
 
 ### Types of Macros in C++
 
-1. Object-like Macros
+1. **Object-like Macros**
 
 - Act like textual replacement, used for defining constants or short, reusable code snippets, do not take arguments.     
 
@@ -321,7 +321,7 @@ It is a compiler-specific instructions
 #define PI 3.14159 
 ```
 
-2. function-like Macros
+2. **function-like Macros**
 
 - Used for creating inline functions which can take arguments.     
 
@@ -329,7 +329,7 @@ It is a compiler-specific instructions
 #define PRINT(x) cout << "Value is: " << x 
 ```
 
-2. Multiline Macros
+2. **Multiline Macros**
 
 - Used for encapsulating complex code blocs.     
 
