@@ -227,7 +227,7 @@ int main() {
 
 ## Memory Segments in C/C++
 
-![image](https://github.com/GhassenHafsiaINSAT/C-Projects/assets/110825502/3cfcfbdc-c29e-4885-aacf-90334a5b7a36)
+![image](../memory.png)
 
 ### Stack Memory
 
