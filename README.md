@@ -322,6 +322,21 @@ inline return-type function-name(parameters)
 
 ```
 
+## Namespace in C++ 
+- Namespace define the space where the identifiers are defined like variables, methods, classes to avoid name collision 
+
+```cpp 
+namespace namespace_name
+{
+	int a; 
+	void add();
+	class student{}; 
+} 	// There is no `;` after the closing brace
+
+
+namespace_name::code; 		// to call the namespace variables or functions
+```
+
 
 ## Macros
 - Macros are Preprocessor directives used for code generation and substitution
