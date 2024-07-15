@@ -223,6 +223,55 @@ int main() {
     return 0;
 }
 ```
+## Macros
+- Macros are Preprocessor directives used for code generation and substitution
+- Macros play a crucial role in simplifying code
+- Macros are defined using #define directive, to create symoblic constants that can be reused throughout a program
+- Macros are processed by the C++ preprocessor, which runs before the actual compilation
+
+- syntax : 
+```cpp
+#define MACRO_NAME macro_definition
+```
+
+### Types of Macros in C++
+
+1. Object-like Macros
+
+- Act like textual replacement, used for defining constants or short, reusable code snippets, do not take arguments.     
+
+```cpp 
+#define PI 3.14159 
+```
+
+2. function-like Macros
+
+- Used for creating inline functions which can take arguments.     
+
+```cpp 
+#define PRINT(x) cout << "Value is: " << x 
+```
+
+2. Multiline Macros
+
+- Used for encapsulating complex code blocs.     
+
+```cpp 
+#define PRINT_RECTANGLE(width, height)                     \ 
+    for (int i = 0; i < height; i++) {                     \ 
+        for (int j = 0; j < width; j++) {                  \ 
+            std::cout << "*";                              \ 
+        }                                                  \ 
+        std::cout << std::endl;                            \ 
+    } 
+```
+
+### Predefined Macros
+
+1. __LINE__: This macro expands to the current line number in the source code.
+2. __FILE__: This macro expands to the name of the current source file.
+3. __DATE__: This macro expands to a string that represents the date of compilation.
+4. __TIME__: This macro expands to a string that represents the time of compilation.
 
 ## Memory Segments in C/C++
 
