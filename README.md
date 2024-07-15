@@ -47,7 +47,7 @@ color_t color = BLUE;
 - A data type that can be assigned some limited values
 
 ```cpp 
-enum animal {cat, dog, sheep};	// defining enum animal 
+enum animal {cat, dog, sheep};		// defining enum animal 
 
 enumerated-type_name test = value1 	// creating animal type variable 
 ```
@@ -94,8 +94,8 @@ Color col = Color::Red;
 - Saving memory space by allowing two data members that are never used at the same time to share the same piece of memory. Example:
 
 ```cpp
-void F1(int x[]); // F1 changes the content of x.
-void F2(float x[]); // F2 changes the content of x.
+void F1(int x[]); 	// F1 changes the content of x.
+void F2(float x[]); 	// F2 changes the content of x.
 void F3(bool y) {
   int a[1000];
   float b[1000];
@@ -112,8 +112,8 @@ void F3(bool y) {
 - This can be rewritten as:
 
 ```cpp
-void F1(int x[]); // F1 changes the content of x.
-void F2(float x[]); // F2 changes the content of x.
+void F1(int x[]); 	// F1 changes the content of x.
+void F2(float x[]); 	// F2 changes the content of x.
 void F3(bool y) {
   union { 
     int a[1000]; 
@@ -139,8 +139,8 @@ union {
   int i; 
 } x; 
 x.f = 2.0f; 
-x.i |= 0x80000000;  // set sign bit of f 
-cout << x.f;        // will give -2.0 
+x.i |= 0x80000000;  	// set sign bit of f 
+cout << x.f;        	// will give -2.0 
 ```
 
 - In this example, the sign bit of `f` is set using the bitwise OR operator, which can only be applied to integers.
@@ -173,13 +173,13 @@ In a nutshell:
 int main() {
     std::variant<int, float, std::string> v;
     v = 42;
-    std::cout << std::get<int>(v) << std::endl;  // Outputs: 42
+    std::cout << std::get<int>(v) << std::endl;  		// Outputs: 42
 
     v = 3.14f;
-    std::cout << std::get<float>(v) << std::endl;  // Outputs: 3.14
+    std::cout << std::get<float>(v) << std::endl;  		// Outputs: 3.14
 
     v = "hello";
-    std::cout << std::get<std::string>(v) << std::endl;  // Outputs: hello
+    std::cout << std::get<std::string>(v) << std::endl;  	// Outputs: hello
 
     return 0;
 }
@@ -220,14 +220,14 @@ int main() {
     std::for_each(numbers.begin(), numbers.end(), [=](int n) {
         std::cout << n * n << " ";
     });
-    std::cout << std::endl;  // Outputs: 1 4 9 16 25
+    std::cout << std::endl;  				// Outputs: 1 4 9 16 25
 
     // Capture by reference
     int total = 0;
     std::for_each(numbers.begin(), numbers.end(), [&](int n) {
         total += n;
     });
-    std::cout << "Total: " << total << std::endl;  // Outputs: Total: 15
+    std::cout << "Total: " << total << std::endl;  	// Outputs: Total: 15
 
     return 0;
 }
