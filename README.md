@@ -43,6 +43,15 @@ enum color_t {BLACK, BLUE, GREEN};
 color_t color = BLUE;
 ```
 
+## Enumeration 
+- A data type that can be assigned some limited values
+
+```cpp 
+enum animal {cat, dog, sheep};	// defining enum animal 
+
+enumerated-type_name test = value1 	// creating animal type variable 
+```
+
 ## Class Enumerators
 
 A class enumerator `enum class` is a data type added in the **C++11 Standard**. They are also known as **scoped enumerations**. They are type-safe and strongly scoped:
