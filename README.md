@@ -251,6 +251,40 @@ inline return-type function-name(parameters)
 }  
 ```
 
+## Compile-time and Run-time
+
+- **Compile-time** is when high-level code is translated to machine language, identifying syntax errors (incorrect construction) and semantic errors (meaningless statements).  
+
+- **Run-time** is when the program executes, it can detect some errors because of absurd operations.  
+
+### Compile-time Polymorphism
+
+- The compiler determines which function or operation to call, based on the number, types and order of arguments.  
+
+- function  calls are statically binded.  
+
+- Faster execution rate.    
+1. **Function overloading** 
+
+- When multiple functions in a class with the same name but different parameters exist.  
+
+2. **Operator overloading** 
+
+- It is the process of defining different operations for the operator that vary depending on the argument type.   
+
+- List of operators that cannot be overloaded in C++ are ::, .*, ., ?:
+
+### Run-time polymorphism
+
+- The decision of which function to call is determined at runtime based on the actual object type.  
+- involves inheritance 
+
+- function  calls are dynamically binded 
+
+- Run-time polymorphisme can be exhibited by method overriding using **Virtual functions**.  
+
+
+
 ## C++ Preprocessor and Preprocessor Directives 
 
 - Pre-processing in C++ does many tasks such as including files, conditional compilation, using macros ... 
