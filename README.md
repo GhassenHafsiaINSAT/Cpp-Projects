@@ -232,8 +232,9 @@ int main() {
 
 ### Frequently used preprocessor directives
 
-1. **#include** : 
-The `#include` preprocessor directive is used to include the contents of one file into the current one.  
+1. **#include** :
+   
+- The `#include` preprocessor directive is used to include the contents of one file into the current one.  
 
 ```cpp
 #include <header_file_name>	// includes the header file from the source directory
@@ -244,14 +245,15 @@ The `#include` preprocessor directive is used to include the contents of one fil
 
 2. **#define** :
 
-The `#define` preprocessing directive is used to define macros.  
+- The `#define` preprocessing directive is used to define macros.  
 
 ```cpp
 #define macro_name value
 ```
 
-3. **#undef** : 
-Used to redefine an existing macro.  
+3. **#undef** :
+   
+- Used to redefine an existing macro.  
 
 ```cpp
 ```cpp
@@ -260,8 +262,9 @@ Used to redefine an existing macro.
 #undef MAX_VALUE 
 #define MAX_VALUE 200 
 ```
-4. **#ifdef and #ifndef
-Used for conditional compilation, `#ifndef` verifies that a macro is not defined and `#ifdef` verifies that a macro is defined.     
+4. **#ifdef and #ifndef**
+   
+- Used for conditional compilation, `#ifndef` verifies that a macro is not defined and `#ifdef` verifies that a macro is defined.     
 
 ```cpp 
 #ifdef macro_name
@@ -272,14 +275,16 @@ Used for conditional compilation, `#ifndef` verifies that a macro is not defined
 ```
 
 5. **#error**
-Used to print a  custom error message for compilation error.  
+
+- Used to print a  custom error message for compilation error.  
 
 ```cpp 
 #error error_message
 ```
 
 6. **#warning** 
-Used to print a custom warning message during the compilation.  
+
+- Used to print a custom warning message during the compilation.  
 
 ```cpp 
 #warning warning_message
@@ -287,7 +292,7 @@ Used to print a custom warning message during the compilation.
 
 7. **#pragma**
 
-It is a compiler-specific instructions
+- It is a compiler-specific instructions
  
 ```cpp 
 
