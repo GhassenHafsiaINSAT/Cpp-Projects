@@ -223,6 +223,24 @@ int main() {
     return 0;
 }
 ```
+## Inline functions in C++ 
+- An inline function is expanded in line when it's called.  
+
+- This substitution is performed by the C++ compiler at compile time.  
+- Inlining is a request to the compiler, not a command.  
+- The compiler may not perofrm inlining if the function : 
+	- contains a loop
+	- contains static variables
+	- is recursive ...
+	
+- It is useful when the execution time of the function is less than the switching time from the caller function to the called function.    
+
+```cpp 
+inline return-type function-name(parameters)
+{
+    // function code
+}  
+```
 
 ## C++ Preprocessor and Preprocessor Directives 
 
