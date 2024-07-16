@@ -20,13 +20,14 @@ C++ organizes language types into two main categories:
   - Lambdas
 
 ## Conversion Rules
+
 `*` : any operation.
-    
-  - **Floating Point Promotion**: floating type * integer type = floating type.
-  - **Implicit Integer Promotion**: small_integral_type * small_integral_type = int.
-  - **Size Promotion**: small_type * large_type = large_type.
-  - **Sign Promotion**: signed_type * unsigned_type = unsigned_type.
-  - **Implicit Promotion**: +a / a+0 = ASCII code.
+
+- **Floating Point Promotion**: floating type * integer type = floating type.
+- **Implicit Integer Promotion**: small_integral_type * small_integral_type = int.
+- **Size Promotion**: small_type * large_type = large_type.
+- **Sign Promotion**: signed_type * unsigned_type = unsigned_type.
+- **Implicit Promotion**: +a / a+0 = ASCII code.
 
 ## `auto` Keyword
 
@@ -43,22 +44,12 @@ enum color_t {BLACK, BLUE, GREEN};
 color_t color = BLUE;
 ```
 
-## Enumeration 
-- A data type that can be assigned some limited values
-
-```cpp 
-enum animal {cat, dog, sheep};		// defining enum animal 
-
-enumerated-type_name test = value1 	// creating animal type variable 
-```
-
 ## Class Enumerators
 
 A class enumerator `enum class` is a data type added in the **C++11 Standard**. They are also known as **scoped enumerations**. They are type-safe and strongly scoped:
 
 - **Type Safe:** They do not allow implicit conversions to int, similar to how `nullptr` does not allow conversion to 0, and do not allow comparisons with other enumerations, thus solving many type-related problems and potential bugs in code.
 - **Strongly Scoped:** They do not cause variable naming problems.
-
 
 ```cpp
 //Here is an example of an enum class
@@ -94,8 +85,8 @@ Color col = Color::Red;
 - Saving memory space by allowing two data members that are never used at the same time to share the same piece of memory. Example:
 
 ```cpp
-void F1(int x[]); 	// F1 changes the content of x.
-void F2(float x[]); 	// F2 changes the content of x.
+void F1(int x[]); // F1 changes the content of x.
+void F2(float x[]); // F2 changes the content of x.
 void F3(bool y) {
   int a[1000];
   float b[1000];
@@ -112,8 +103,8 @@ void F3(bool y) {
 - This can be rewritten as:
 
 ```cpp
-void F1(int x[]); 	// F1 changes the content of x.
-void F2(float x[]); 	// F2 changes the content of x.
+void F1(int x[]); // F1 changes the content of x.
+void F2(float x[]); // F2 changes the content of x.
 void F3(bool y) {
   union { 
     int a[1000]; 
@@ -139,8 +130,8 @@ union {
   int i; 
 } x; 
 x.f = 2.0f; 
-x.i |= 0x80000000;  	// set sign bit of f 
-cout << x.f;        	// will give -2.0 
+x.i |= 0x80000000;  // set sign bit of f 
+cout << x.f;        // will give -2.0 
 ```
 
 - In this example, the sign bit of `f` is set using the bitwise OR operator, which can only be applied to integers.
@@ -173,17 +164,18 @@ In a nutshell:
 int main() {
     std::variant<int, float, std::string> v;
     v = 42;
-    std::cout << std::get<int>(v) << std::endl;  		// Outputs: 42
+    std::cout << std::get<int>(v) << std::endl;  // Outputs: 42
 
     v = 3.14f;
-    std::cout << std::get<float>(v) << std::endl;  		// Outputs: 3.14
+    std::cout << std::get<float>(v) << std::endl;  // Outputs: 3.14
 
     v = "hello";
-    std::cout << std::get<std::string>(v) << std::endl;  	// Outputs: hello
+    std::cout << std::get<std::string>(v) << std::endl;  // Outputs: hello
 
     return 0;
 }
 ```
+
 ## Lambda Functions
 
 - Lambda functions were introduced in C++11. Inspired by functional programming languages like Lisp, Haskell, and OCaml, they provide a practical way of defining closures (anonymous function objects that can be passed as arguments to functions or defined and invoked directly).
@@ -220,220 +212,22 @@ int main() {
     std::for_each(numbers.begin(), numbers.end(), [=](int n) {
         std::cout << n * n << " ";
     });
-    std::cout << std::endl;  				// Outputs: 1 4 9 16 25
+    std::cout << std::endl;  // Outputs: 1 4 9 16 25
 
     // Capture by reference
     int total = 0;
     std::for_each(numbers.begin(), numbers.end(), [&](int n) {
         total += n;
     });
-    std::cout << "Total: " << total << std::endl;  	// Outputs: Total: 15
+    std::cout << "Total: " << total << std::endl;  // Outputs: Total: 15
 
     return 0;
 }
 ```
-## Inline functions in C++ 
-- An inline function is expanded in line when it's called.  
-
-- This substitution is performed by the C++ compiler at compile time.  
-- Inlining is a request to the compiler, not a command.  
-- The compiler may not perofrm inlining if the function : 
-	- contains a loop
-	- contains static variables
-	- is recursive ...
-	
-- It is useful when the execution time of the function is less than the switching time from the caller function to the called function.    
-
-```cpp 
-inline return-type function-name(parameters)
-{
-    // function code
-}  
-```
-
-## Compile-time and Run-time
-
-- **Compile-time** is when high-level code is translated to machine language, identifying syntax errors (incorrect construction) and semantic errors (meaningless statements).  
-
-- **Run-time** is when the program executes, it can detect some errors because of absurd operations.  
-
-### Compile-time Polymorphism
-
-- The compiler determines which function or operation to call, based on the number, types and order of arguments.  
-
-- function  calls are statically binded.  
-
-- Faster execution rate.    
-1. **Function overloading** 
-
-- When multiple functions in a class with the same name but different parameters exist.  
-
-2. **Operator overloading** 
-
-- It is the process of defining different operations for the operator that vary depending on the argument type.   
-
-- List of operators that cannot be overloaded in C++ are ::, .*, ., ?:
-
-### Run-time polymorphism
-
-- The decision of which function to call is determined at runtime based on the actual object type.  
-- involves inheritance 
-
-- function  calls are dynamically binded 
-
-- Run-time polymorphisme can be exhibited by method overriding using **Virtual functions**.  
-
-
-
-## C++ Preprocessor and Preprocessor Directives 
-
-- Pre-processing in C++ does many tasks such as including files, conditional compilation, using macros ... 
-
-- Pre-Processor directives are special commands used to instruct the preprocessor, It tells him to modfiy source code before compilation
-
-### Frequently used preprocessor directives
-
-1. **#include** :
-   
-- The `#include` preprocessor directive is used to include the contents of one file into the current one.  
-
-```cpp
-#include <header_file_name>	// includes the header file from the source directory
-
-#include "header_file_name"	// includes the file from directory the source file is currently in
-
-```
-
-2. **#define** :
-
-- The `#define` preprocessing directive is used to define macros.  
-
-```cpp
-#define macro_name value
-```
-
-3. **#undef** :
-   
-- Used to redefine an existing macro.  
-
-```cpp
-```cpp
-#define macro_name value
-
-#undef MAX_VALUE 
-#define MAX_VALUE 200 
-```
-4. **#ifdef and #ifndef**
-   
-- Used for conditional compilation, `#ifndef` verifies that a macro is not defined and `#ifdef` verifies that a macro is defined.     
-
-```cpp 
-#ifdef macro_name
-    // Code to be executed if macro_name is defined
-#ifndef macro_name
-   // Code to be executed if macro_name is not defined
-#endif
-```
-
-5. **#error**
-
-- Used to print a  custom error message for compilation error.  
-
-```cpp 
-#error error_message
-```
-
-6. **#warning** 
-
-- Used to print a custom warning message during the compilation.  
-
-```cpp 
-#warning warning_message
-```
-
-7. **#pragma**
-
-- It is a compiler-specific instructions
- 
-```cpp 
-
-#pragma once 		// used to include guard for header files.
-#pragma message 	// used to print custom messages at the time of compilation.
-#pragma warning 	// used to control warning behavior (like enable or disable warnings).
-#pragma optimize 	// used to control optimization settings (manage optimization level).
-#pragma comment 	// used to include some additional information in the object file(or specify linker options).
-
-```
-
-## Namespace in C++ 
-- Namespace define the space where the identifiers are defined like variables, methods, classes to avoid name collision 
-
-```cpp 
-namespace namespace_name
-{
-	int a; 
-	void add();
-	class student{}; 
-} 	// There is no `;` after the closing brace
-
-
-namespace_name::code; 		// to call the namespace variables or functions
-```
-
-
-## Macros
-- Macros are Preprocessor directives used for code generation and substitution
-- Macros play a crucial role in simplifying code
-- Macros are defined using #define directive, to create symoblic constants that can be reused throughout a program
-- Macros are processed by the C++ preprocessor, which runs before the actual compilation
-
-- syntax : 
-```cpp
-#define MACRO_NAME macro_definition
-```
-
-### Types of Macros in C++
-
-1. **Object-like Macros**
-
-- Act like textual replacement, used for defining constants or short, reusable code snippets, do not take arguments.     
-
-```cpp 
-#define PI 3.14159 
-```
-
-2. **function-like Macros**
-
-- Used for creating inline functions which can take arguments.     
-
-```cpp 
-#define PRINT(x) cout << "Value is: " << x 
-```
-
-2. **Multiline Macros**
-
-- Used for encapsulating complex code blocs.     
-
-```cpp 
-#define PRINT_RECTANGLE(width, height)                     \ 
-    for (int i = 0; i < height; i++) {                     \ 
-        for (int j = 0; j < width; j++) {                  \ 
-            std::cout << "*";                              \ 
-        }                                                  \ 
-        std::cout << std::endl;                            \ 
-    } 
-```
-
-### Predefined Macros
-
-1. __LINE__: This macro expands to the current line number in the source code.
-2. __FILE__: This macro expands to the name of the current source file.
-3. __DATE__: This macro expands to a string that represents the date of compilation.
-4. __TIME__: This macro expands to a string that represents the time of compilation.
 
 ## Memory Segments in C/C++
 
-![image](https://github.com/GhassenHafsiaINSAT/C-Projects/assets/110825502/3cfcfbdc-c29e-4885-aacf-90334a5b7a36)
+![image](../memory.png)
 
 ### Stack Memory
 
@@ -481,8 +275,10 @@ int* array3 = (int*)calloc(4, sizeof(int));
 
 int* array4 = new int[4](); // Note the parentheses in C++
 ```
+
 - Each object allocated with malloc() must be deallocated with free().
 - Each object allocated with new must be deallocated with delete.  
+
 ### BSS and Data segment
 
 - **Characteristics**:
@@ -502,7 +298,8 @@ int big_data[10000000] = {}; // BSS segment memory
   - Contains the actual executable code.
   - Typically read-only in modern systems.
 
-## Memory Leak 
+## Memory Leak
+
 - A memory leak is a dynamically allocated entity in the heap memory that is no longer used by the program, but still maintained overall its execution
 
 ```cpp
@@ -511,9 +308,10 @@ int* array = new int[10];
 array = nullptr; // memory leak!!
 }
 ```
-## Pointers and references 
 
-### Pointer 
+## Pointers and references
+
+### Pointer
 
 - **Pointer** T* is a value referring to a location in memory
 
@@ -527,7 +325,7 @@ int a = *ptr1; // dereferencing (get value)
 
 - **Subscript Operator** [] allows accessing the pointer element at a given position.  
 
-```cpp 
+```cpp
 int* ptr2 = new int[10];
 ptr2[2] = 3;
 ```
@@ -536,32 +334,34 @@ ptr2[2] = 3;
 
 - The **address-of operator** & returns the address of a variable.  
 
-```cpp 
+```cpp
 int a = 3;
 int* b = &a;
 ```
+
 - The arrow operator (->) is used with a pointer to an object
 
-```cpp 
+```cpp
 A* ptr = &a;
 ptr->x;
 ```
 
 ### References
-- Avariable reference T& is an alias, namely another name for an existing variable. 
+
+- Avariable reference T& is an alias, namely another name for an existing variable.
 
 - A pointer has its own memory address, reference shares the same memory address with the original variable.
 
 - Not like pointers, references cannot have NULL value, cannot be changed and must be initalized when they are created.  
 
-```cpp 
+```cpp
 int c = 2;
 int& d = c; 
 ```
 
 - The dot (.) operator is applied to local objects and references
 
-```cpp 
+```cpp
 A& ref = a; 
 ref.x; 
 ```
