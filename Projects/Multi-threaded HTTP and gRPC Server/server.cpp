@@ -59,5 +59,5 @@ int main()
 // Closing the Server Socket
     close(serverSocket); 
 
-
+return 0; 
 }
